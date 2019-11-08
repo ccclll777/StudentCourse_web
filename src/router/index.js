@@ -8,127 +8,87 @@ const register = r => require.ensure([], () => r(require('@/page/register')), 'r
 const manage = r => require.ensure([], () => r(require('@/page/manage')), 'manage');
 const home = r => require.ensure([], () => r(require('@/page/home')), 'home');
 const SearchStudentInfo = r => require.ensure([], () => r(require('@/page/SearchStudentInfo')), 'SearchStudentInfo');
-const TrainParkingInfo = r => require.ensure([], () => r(require('@/page/TrainParkingInfo')), 'TrainParkingInfo');
 const SearchTeacherInfo = r => require.ensure([], () => r(require('@/page/SearchTeacherInfo')), 'SearchTeacherInfo');
-const TrainTransfer = r => require.ensure([], () => r(require('@/page/TrainTransfer')), 'TrainTransfer');
-
+const InsertStudentInfo = r => require.ensure([], () => r(require('@/page/InsertStudentInfo')), 'InsertStudentInfo');
+const InsertTeacherInfo = r => require.ensure([], () => r(require('@/page/InsertTeacherInfo')), 'InsertTeacherInfo');
+const InsertCourseInfo = r => require.ensure([], () => r(require('@/page/InsertCourseInfo')), 'InsertCourseInfo');
 const SearchCourseInfo = r => require.ensure([], () => r(require('@/page/SearchCourseInfo')), 'SearchCourseInfo');
-const TicketOrder = r => require.ensure([], () => r(require('@/page/TicketOrder')), 'TicketOrder');
-const TransferTicketOrder = r => require.ensure([], () => r(require('@/page/TransferTicketOrder')), 'TransferTicketOrder');
-const TrainTransferTicketQuery = r => require.ensure([], () => r(require('@/page/TrainTransferTicketQuery')), 'TrainTransferTicketQuery');
+const uploadExcel = r => require.ensure([], () => r(require('@/page/upload-excel')), 'uploadExcel');
 
-const UserInfo = r => require.ensure([], () => r(require('@/page/UserInfo')), 'UserInfo');
-const ChangeUserInfo = r => require.ensure([], () => r(require('@/page/ChangeUserInfo')), 'ChangeUserInfo');
 
-const ChangePassword = r => require.ensure([], () => r(require('@/page/ChangePassword')), 'ChangePassword');
 
-const PassengerInfo = r => require.ensure([], () => r(require('@/page/PassengerInfo')), 'PassengerInfo');
+const UpdateStudentInfo = r => require.ensure([], () => r(require('@/page/UpdateStudentInfo')), 'UpdateStudentInfo');
 
-const AddPassenger = r => require.ensure([], () => r(require('@/page/AddPassenger')), 'AddPassenger');
+const UpdateCourseInfo = r => require.ensure([], () => r(require('@/page/UpdateCourseInfo')), 'UpdateCourseInfo');
 
-const AllOrderList = r => require.ensure([], () => r(require('@/page/AllOrderList')), 'AllOrderList');
-const NoTripOrderList = r => require.ensure([], () => r(require('@/page/NoTripOrderList')), 'NoTripOrderList');
+const UpdateTeacherInfo = r => require.ensure([], () => r(require('@/page/UpdateTeacherInfo')), 'UpdateTeacherInfo');
 
-const NoPayOrderList = r => require.ensure([], () => r(require('@/page/NoPayOrderList')), 'NoPayOrderList');
-
-const TicketChange = r => require.ensure([], () => r(require('@/page/TicketChange')), 'TicketChange');
 const routes = [
-	{
-		path: '/',
-		component: login
-	},
+    {
+        path: '/',
+        component: login
+    },
     {
         path: '/register',
         component: register
     },
-	{
-		path: '/manage',
-		component: manage,
-		name: '',
-		children: [{
-			path: '',
-			component: home,
-			meta: [],
-		},{
-			path: '/SearchStudentInfo',
-			component: SearchStudentInfo,
-			meta: ['实验三-简单查询', '学生信息查询'],
-		},{
-                path: '/SearchTrainInfo',
-                component: TrainParkingInfo,
-                meta: ['列车信息查询', '列车时刻表'],
-        },{
-			path: '/SearchTeacherInfo',
-			component: SearchTeacherInfo,
-			meta: ['实验三-简单查询', '教师信息查询'],
-		},{
-            path: '/TrainTransfer',
-            component: TrainTransfer,
-            meta: ['列车信息查询', '接续换乘'],
-        },{
-			path: '/SearchCourseInfo',
-			component: SearchCourseInfo,
-			meta: ['实验三-简单查询', '课程信息查询'],
-		},
-            {
-                path: '/TrainTransferTicketQuery',
-                component: TrainTransferTicketQuery,
-                meta: ['车票查询及购买', '接续换乘'],
-            },
-
-            {
-                path: '/TransferTicketOrder',
-                component: TransferTicketOrder,
-                meta: ['车票查询及购买', '接续换乘'],
-            },{
-            path: '/TicketOrder',
-            component: TicketOrder,
-            meta: ['车票查询及购买', '车票购买'],
+    {
+        path: '/manage',
+        component: manage,
+        name: '',
+        children: [{
+            path: '',
+            component: home,
+            meta: [],
+        }, {
+            path: '/SearchStudentInfo',
+            component: SearchStudentInfo,
+            meta: ['实验三-简单查询', '学生信息查询'],
+        }, {
+            path: '/SearchTeacherInfo',
+            component: SearchTeacherInfo,
+            meta: ['实验三-简单查询', '教师信息查询'],
+        }, {
+            path: '/InsertStudentInfo',
+            component: InsertStudentInfo,
+            meta: ['实验四-数据插入', '学生信息插入'],
+        }, {
+            path: '/InsertTeacherInfo',
+            component: InsertTeacherInfo,
+            meta: ['实验四-数据插入', '教师信息插入'],
+        }, {
+            path: '/InsertCourseInfo',
+            component: InsertCourseInfo,
+            meta: ['实验四-数据插入', '课程信息插入'],
         },
             {
-                path: '/AllOrderList',
-                component: AllOrderList,
-                meta: ['订单列表', '全部订单'],
+                path: '/uploadExcel',
+                component: uploadExcel,
+                meta: ['实验四-数据插入', 'excel上传'],
+            }, {
+                path: '/SearchCourseInfo',
+                component: SearchCourseInfo,
+                meta: ['实验三-简单查询', '课程信息查询'],
             },
+
+
             {
-                path: '/NoTripOrderList',
-                component: NoTripOrderList,
-                meta: ['订单列表', '未出行订单'],
-            },
-            {
-                path: '/NoPayOrderList',
-                component: NoPayOrderList,
-                meta: ['订单列表', '未支付订单'],
-            }
-		,{
-                path: '/TicketChange',
-                component: TicketChange,
-                meta: ['订单列表', '订单改签'],
-            },{
-			path: '/UserInfo',
-			component: UserInfo,
-			meta: ['个人信息', '个人信息'],
-		},{
-                path: '/ChangeUserInfo',
-                component: ChangeUserInfo,
-                meta: ['个人信息', '修改个人信息'],
-        }, {
-                path: '/ChangePassword',
-                component: ChangePassword,
-                meta: ['个人信息', '修改密码'],
-        }, {
-                path: '/PassengerInfo',
-                component: PassengerInfo,
-                meta: ['个人信息', '乘客信息'],
-        },{
-                path: '/AddPassenger',
-                component: AddPassenger,
-                meta: ['个人信息', '添加乘客信息'],
-        }]
-	}
+                path: '/UpdateStudentInfo',
+                component: UpdateStudentInfo,
+                meta: ['实验五-数据更新', '学生信息更新'],
+            }, {
+                path: '/UpdateCourseInfo',
+                component: UpdateCourseInfo,
+                meta: ['实验五-数据更新', '课程信息更新'],
+            }, {
+                path: '/UpdateTeacherInfo',
+                component: UpdateTeacherInfo,
+                meta: ['实验五-数据更新', '教师信息更新'],
+            }]
+    }
 ]
 
 export default new Router({
-	routes,
-	strict: process.env.NODE_ENV !== 'production',
+    routes,
+    strict: process.env.NODE_ENV !== 'production',
 })

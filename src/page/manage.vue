@@ -20,22 +20,21 @@
                         <!--<el-menu-item index="adminList">管理员列表</el-menu-item>-->
                     </el-submenu>
 
-                    <!--<el-submenu index="3">-->
-                        <!--<template slot="title"><i class="el-icon-plus"></i>车票查询及购买</template>-->
-                        <!--<el-menu-item index="ticketInquiry">余票查询</el-menu-item>-->
-                        <!--<el-menu-item index="TicketOrder">车票购买</el-menu-item>-->
-                        <!--<el-menu-item index="TrainTransferTicketQuery">接续换乘</el-menu-item>-->
-                        <!--<el-menu-item index="TransferTicketOrder">接续换乘车票购买</el-menu-item>-->
+                    <el-submenu index="3">
+                        <template slot="title"><i class="el-icon-plus"></i>实验四-数据插入</template>
+                        <el-menu-item index="InsertStudentInfo">学生信息插入</el-menu-item>
+                        <el-menu-item index="InsertCourseInfo">课程信息插入</el-menu-item>
+                        <el-menu-item index="InsertTeacherInfo">教师信息插入</el-menu-item>
+                        <el-menu-item index="uploadExcel">excel上传</el-menu-item>
 
-                    <!--</el-submenu>-->
-                    <!--<el-submenu index="4">-->
-                        <!--<template slot="title"><i class="el-icon-star-on"></i>订单信息</template>-->
-                        <!--<el-menu-item index="AllOrderList">全部订单</el-menu-item>-->
-                        <!--<el-menu-item index="NoPayOrderList">未支付订单</el-menu-item>-->
-                        <!--<el-menu-item index="NoTripOrderList">未出行订单</el-menu-item>-->
-                        <!--<el-menu-item index="TicketChange">订单改签</el-menu-item>-->
+                    </el-submenu>
+                    <el-submenu index="4">
+                        <template slot="title"><i class="el-icon-star-on"></i>实验五-数据更新</template>
+                        <el-menu-item index="UpdateStudentInfo">学生信息更新</el-menu-item>
+                        <el-menu-item index="UpdateCourseInfo">课程信息更新</el-menu-item>
+                        <el-menu-item index="UpdateTeacherInfo">教师信息更新</el-menu-item>
 
-                    <!--</el-submenu>-->
+                    </el-submenu>
                     <!--<el-submenu index="6">-->
                         <!--<template slot="title"><i class="el-icon-setting"></i>个人信息</template>-->
                         <!--<el-menu-item index="UserInfo">个人信息</el-menu-item>-->

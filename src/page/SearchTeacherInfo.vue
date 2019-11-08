@@ -59,7 +59,7 @@
             <el-table
                 :data="tableData"
                 style="width: 100%"
-                row-key="train_number"
+                row-key="tid"
             >
 
                 <el-table-column

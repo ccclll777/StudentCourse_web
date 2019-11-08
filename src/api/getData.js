@@ -16,7 +16,7 @@ export const findStudentLessThanAndDNAME = data => fetch('/student/findStudentLe
 export const findAllNameAndAge = data => fetch('/student/findAllNameAndAge', data, 'GET');
 export const findNameSex = data => fetch('/student/findNameSex', data, 'GET');
 export const insertStudent = data => fetch('/student/insertStudent', data, 'POST');
-export const updateStudent = data => fetch('/student/updateStudent', data, 'POST');
+export const updateTeacher = data => fetch('/teacher/updateTeacher', data, 'POST');
 
 
 
@@ -32,3 +32,13 @@ export const findTeacherAgeThan = data => fetch('/teacher/findTeacherAgeThan', d
 export const findTeacherSexIs = data => fetch('/teacher/findTeacherSexIs', data, 'GET')
 
 export const findDnameIs = data => fetch('/teacher/findDnameIs', data, 'GET')
+
+
+export const insertTeacher= data => fetch('/teacher/insertTeacher', data, 'POST');
+
+export const insertCourse= data => fetch('/course/insertCourse', data, 'POST');
+
+
+export const updateStudent = data => fetch('/student/updateStudent', data, 'POST');
+
+export const updateCourse = data => fetch('/course/updateCourse', data, 'POST');
