@@ -121,7 +121,7 @@
                 test4: false,
                 currentRow: null,
                 offset: 0,
-                limit: 20,
+                limit: 10,
                 count: 0,
                 currentPage: 1,
 

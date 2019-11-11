@@ -14,9 +14,9 @@ const InsertTeacherInfo = r => require.ensure([], () => r(require('@/page/Insert
 const InsertCourseInfo = r => require.ensure([], () => r(require('@/page/InsertCourseInfo')), 'InsertCourseInfo');
 const SearchCourseInfo = r => require.ensure([], () => r(require('@/page/SearchCourseInfo')), 'SearchCourseInfo');
 const uploadExcel = r => require.ensure([], () => r(require('@/page/upload-excel')), 'uploadExcel');
-
-
-
+const StudentCourseInfo = r => require.ensure([], () => r(require('@/page/StudentCourseInfo')), 'StudentCourseInfo');
+const SearchStudentCourseInfo = r => require.ensure([], () => r(require('@/page/SearchStudentCourseInfo')), 'SearchStudentCourseInfo');
+const SelectCourse= r => require.ensure([], () => r(require('@/page/SelectCourse')), 'SelectCourse');
 const UpdateStudentInfo = r => require.ensure([], () => r(require('@/page/UpdateStudentInfo')), 'UpdateStudentInfo');
 
 const UpdateCourseInfo = r => require.ensure([], () => r(require('@/page/UpdateCourseInfo')), 'UpdateCourseInfo');
@@ -84,6 +84,19 @@ const routes = [
                 path: '/UpdateTeacherInfo',
                 component: UpdateTeacherInfo,
                 meta: ['实验五-数据更新', '教师信息更新'],
+            },
+            {
+                path: '/StudentCourseInfo',
+                component: StudentCourseInfo,
+                meta: ['实验六-实现选课功能', '学生选课信息'],
+            },{
+                path: '/SearchStudentCourseInfo',
+                component: SearchStudentCourseInfo,
+                meta: ['实验六-实现选课功能', '查询学生选课信息'],
+            },{
+                path: '/SelectCourse',
+                component: SelectCourse,
+                meta: ['实验六-实现选课功能', '学生选课'],
             }]
     }
 ]

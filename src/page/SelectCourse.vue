@@ -5,57 +5,28 @@
         <meta http-equiv="Pragma" content="no-cache">
 
         <head-top></head-top>
-        <el-form :model="searchForm" ref="searchForm">
-            <el-row :gutter="30" style="margin-left: 30px;margin-top: 10px;width: 800px">
-                <el-col :span="6">
-                    <div class="grid-content bg-purple">
-                        <el-input v-model="searchForm.cid" placeholder="课程号">
-                        </el-input>
-                    </div>
-                </el-col>
-                <el-col :span="6">
-                    <div class="grid-content bg-purple" style="margin-left: 20px">
-                        <el-input v-model="searchForm.name" placeholder="课程名">
-                        </el-input>
-                    </div>
-                </el-col>
-                <el-col :span="6">
-                    <div class="grid-content bg-purple">
-                        <el-input v-model="searchForm.fcid" placeholder="先行课课程号">
-                        </el-input>
-                        <!--<el-button type="primary" round @click="submitForm('searchForm')">搜索</el-button>-->
-                    </div>
-                </el-col>
-                <el-col :span="6">
-                    <div class="grid-content bg-purple">
-                        <el-input v-model="searchForm.credit" placeholder="学分">
-                        </el-input>
-                        <!--<el-button type="primary" round @click="submitForm('searchForm')">搜索</el-button>-->
-                    </div>
-                </el-col>
-            </el-row>
-            <el-row :gutter="30" style="margin-left: 30px;margin-top: 10px;width: 800px">
 
-                <el-col :span="6">
-                    <div class="grid-content bg-purple">
+        <el-row :gutter="20" style="margin-top: 10px">
 
-                        <el-button type="primary" round @click="insertCourseInfo">插入</el-button>
-                    </div>
-                </el-col>
-            </el-row>
-        </el-form>
+            <el-col :span="4">
+                <div class="grid-content bg-purple">
 
+                    <el-tag type="success" style="margin-left: 300px">  正在给{{sid}}选课</el-tag>
+                </div>
+            </el-col>
+        </el-row>
         <el-table
             :data="tableData"
-            style="width: 100%">
-
+            style="width: 100%"
+            @selection-change="handleSelectionChange">
+            <el-table-column type="selection" width="55"></el-table-column>
             <el-table-column
                 label="课程号"
                 prop="cid">
             </el-table-column>
             <el-table-column
                 label="课程名称"
-                prop="NAME">
+                prop="cname">
             </el-table-column>
             <el-table-column
                 label="先行课号"
@@ -64,6 +35,27 @@
             <el-table-column
                 label="学分"
                 prop="credit">
+            </el-table-column>
+            <el-table-column
+                label="教师编号"
+                prop="tid">
+            </el-table-column>
+            <el-table-column
+                label="教师名称"
+                prop="tname">
+            </el-table-column>
+            <el-table-column
+                label="所在学院"
+                prop="dname">
+            </el-table-column>
+            <el-table-column label="操作" width="200">
+                <template slot-scope="scope">
+                    <el-button
+                        size="mini"
+                        @click="handleEdit(scope.$index, scope.row)">选课
+                    </el-button>
+
+                </template>
             </el-table-column>
         </el-table>
         <el-pagination
@@ -74,13 +66,16 @@
             layout="total, prev, pager, next, jumper"
             :total="count">
         </el-pagination>
+        <div >
+
+        </div>
     </div>
 </template>
 
 <script>
     import headTop from '../components/headTop'
     import {baseUrl, baseImgPath} from '@/config/env'
-    import {findAllCourse,insertCourse} from '@/api/getData'
+    import {findAllCourse,insertStudentCourse,findAllCourseTeacher} from '@/api/getData'
 
     export default {
         data() {
@@ -99,9 +94,26 @@
                 limit: 10,
                 count: 0,
                 currentPage: 1,
+                sid:'',
+                name:'',
+                multipleSelection:[],
+                dialogFormVisible:false
             }
         },
         async created() {
+            if(this.$route.query.sid == null )
+
+            {
+                this.$message({
+                    message: '请先选择学生',
+                    type: 'warning'
+                });
+            }else
+
+            {
+                this.sid = this.$route.query.sid;
+
+            }
             this.initData();
         },
         components: {
@@ -110,16 +122,15 @@
         methods: {
             async initData() {
                 var version = new Date().getTime();
-                const res = await findAllCourse({version:version})
+                const res = await findAllCourseTeacher({version:version})
                 if (res.status == 1) {
                     this.$message({
                         type: 'success',
                         message: '获取数据成功'
                     });
-                    this.tableData = []
                     this.tableData = [];
                     this.tableData = res.courses;
-                    this.count = res.courses.length;
+                    this.count = res.courseTeachers.length;
                     this.getLists();
                 }
 
@@ -136,18 +147,14 @@
             },
             async getLists() {
                 var version = new Date().getTime();
-                const res = await findAllCourse({version:version})
+                const res = await findAllCourseTeacher({version:version})
                 if (res.status == 1) {
 
                     this.tableData = [];
                     for (let i = this.offset; i < this.offset + this.limit; i++) {
-                        if (i < this.offset + res.courses.length) {
-                            const temp = {};
-                            temp.cid = res.courses[i].cid;
-                            temp.NAME = res.courses[i].name;
-                            temp.fcid = res.courses[i].fcid;
-                            temp.credit = res.courses[i].credit;
-                            this.tableData.push(temp);
+                        if (i < this.offset + res.courseTeachers.length) {
+
+                            this.tableData.push(res.courseTeachers[i]);
 
                         }
 
@@ -156,21 +163,40 @@
 
                 }
             },
-            async insertCourseInfo()
-            {
-                var version = new Date().getTime();
-                const res = await insertCourse({CID:this.searchForm.cid,
-                    NAME:this.searchForm.name,FCID:this.searchForm.fcid,
-                    CREDIT:this.searchForm.credit,version:version})
-                if(res == 1)
-                {
-                    this.$message({
-                        type: 'success',
-                        message: '插入数据成功'
-                    });
+            async handleEdit(index, row) {
+                // let flag = false;
+                // this.$alert('你确定选择'+row.cname+"吗", '选课信息', {
+                //     confirmButtonText: '确定',
+                //     callback: action => {
+                //         flag  = true;
+                //         console.log("1111"+flag)
+                //
+                //     }
+                // });
+                // console.log(flag)
+                // if(flag == true)
+                // {
 
-                }
-                this.initData();
+                        const res = await insertStudentCourse({sid:this.sid,cid:row.cid,tid:row.tid})
+                    if(res == 1)
+                    {
+                        this.$message({
+                            type: 'success',
+                            message: '选课成功'
+                        });
+                    }
+                    else
+                    {
+                        this.$message({
+                            type: 'danger',
+                            message: '选课失败'
+                        });
+                    }
+
+                // }
+            },
+            handleSelectionChange(val) {
+                this.multipleSelection = val;
             },
 
         },

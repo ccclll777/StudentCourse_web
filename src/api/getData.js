@@ -42,3 +42,13 @@ export const insertCourse= data => fetch('/course/insertCourse', data, 'POST');
 export const updateStudent = data => fetch('/student/updateStudent', data, 'POST');
 
 export const updateCourse = data => fetch('/course/updateCourse', data, 'POST');
+
+
+export const findStudentCourse = data => fetch('/StudentCourse/findStudentCourse', data, 'GET');
+
+
+export const findAllCourseTeacher = data => fetch('/StudentCourse/findAllCourseTeacher', data, 'GET');
+export const insertStudentCourse = data => fetch('/StudentCourse/insertStudentCourse', data, 'GET');
+
+
+export const UpdateStudentCourse = data => fetch('/StudentCourse/UpdateStudentCourse', data, 'GET');
