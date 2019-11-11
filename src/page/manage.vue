@@ -48,10 +48,13 @@
 
                     <el-submenu index="5">
                         <template slot="title"><i class="el-icon-menu"></i>实验七-数据统计分析</template>
-                        <el-menu-item index="StudentCourseInfo">有学生选修的所有课程名称</el-menu-item>
-                        <el-menu-item index="SearchStudentCourseInfo">平均成绩排名前10的学生</el-menu-item>
-                        <el-menu-item index="SelectCourse">选课数目排名前10的学生</el-menu-item>
-                      
+                        <el-menu-item index="BeSelectedCourseInfo">有学生选修的所有课程名称</el-menu-item>
+                        <el-menu-item index="StudentSelectCourseNum">选课数目排名前10的学生</el-menu-item>
+                        <el-menu-item index="MaxScore">最高成绩以及对应的课程名</el-menu-item>
+                        <el-menu-item index="ScoreDistribution">每位同学的成绩分布</el-menu-item>
+                        <el-menu-item index="CourseMaxScoreStudent">课程最高成绩以及学生姓名</el-menu-item>
+                        <el-menu-item index="SelectCourseNum">选课人数排名前10的课程</el-menu-item>
+
                     </el-submenu>
                 </el-menu>
             </el-col>

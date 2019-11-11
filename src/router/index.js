@@ -23,6 +23,18 @@ const UpdateCourseInfo = r => require.ensure([], () => r(require('@/page/UpdateC
 
 const UpdateTeacherInfo = r => require.ensure([], () => r(require('@/page/UpdateTeacherInfo')), 'UpdateTeacherInfo');
 
+const BeSelectedCourseInfo = r => require.ensure([], () => r(require('@/page/BeSelectedCourseInfo')), 'BeSelectedCourseInfo');
+
+const StudentSelectCourseNum = r => require.ensure([], () => r(require('@/page/StudentSelectCourseNum')), 'StudentSelectCourseNum');
+
+const MaxScore   = r => require.ensure([], () => r(require('@/page/MaxScore')), 'MaxScore');
+
+const ScoreDistribution   = r => require.ensure([], () => r(require('@/page/ScoreDistribution')), 'ScoreDistribution');
+
+const CourseMaxScoreStudent   = r => require.ensure([], () => r(require('@/page/CourseMaxScoreStudent')), 'CourseMaxScoreStudent');
+
+const SelectCourseNum   = r => require.ensure([], () => r(require('@/page/SelectCourseNum')), 'SelectCourseNum');
+
 const routes = [
     {
         path: '/',
@@ -97,7 +109,37 @@ const routes = [
                 path: '/SelectCourse',
                 component: SelectCourse,
                 meta: ['实验六-实现选课功能', '学生选课'],
-            }]
+            },{
+                path: '/BeSelectedCourseInfo',
+                component: BeSelectedCourseInfo,
+                meta: ['实验七-数据统计分析', '有学生选修的所有课程名称'],
+            },
+            {
+                path: '/StudentSelectCourseNum',
+                component: StudentSelectCourseNum,
+                meta: ['实验七-数据统计分析', '选课数目排名前10的学生'],
+            },{
+                path: '/MaxScore',
+                component: MaxScore,
+                meta: ['实验七-数据统计分析', '最高成绩以及最高成绩对应的课程名'],
+            },
+            {
+                path: '/ScoreDistribution',
+                component: ScoreDistribution,
+                meta: ['实验七-数据统计分析', '每位同学的成绩分布'],
+            },
+            {
+                path: '/CourseMaxScoreStudent',
+                component: CourseMaxScoreStudent,
+                meta: ['实验七-数据统计分析', '课程最高成绩以及对应的学生姓名'],
+            },
+            {
+                path: '/SelectCourseNum',
+                component: SelectCourseNum,
+                meta: ['实验七-数据统计分析', '选课人数排名前10的课程'],
+            }
+            ]
+
     }
 ]
 

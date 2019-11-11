@@ -114,6 +114,7 @@
                 limit: 20,
                 count: 0,
                 currentPage: 1,
+                cache:[]
             }
         },
         async created() {
@@ -136,6 +137,7 @@
                     this.tableData = [];
                     this.tableData = res.teachers;
                     this.count = res.teachers.length;
+                    this.cache = res.teachers;
                     this.getLists();
                 }
 
@@ -151,18 +153,18 @@
                 this.getLists()
             },
             async getLists() {
-                const res = await findAllTeacher({})
-                if (res.status == 1) {
+                // const res = await findAllTeacher({})
+                // if (res.status == 1) {
 
                     this.tableData = [];
                     for (let i = this.offset; i < this.offset + this.limit; i++) {
-                        if (i < this.offset + res.teachers.length) {
+                        if (i < this.offset + this.cache.length) {
                             const temp = {};
-                            temp.tid = res.teachers[i].tid;
-                            temp.name = res.teachers[i].name;
-                            temp.sex = res.teachers[i].sex;
-                            temp.age = res.teachers[i].age;
-                            temp.dname = res.teachers[i].dname;
+                            temp.tid = this.cache[i].tid;
+                            temp.name = this.cache[i].name;
+                            temp.sex = this.cache[i].sex;
+                            temp.age = this.cache[i].age;
+                            temp.dname = this.cache[i].dname;
                             this.tableData.push(temp);
 
                         }
@@ -170,7 +172,7 @@
                     }
 
 
-                }
+                // }
             },
             async insertTeacherInfo()
             {

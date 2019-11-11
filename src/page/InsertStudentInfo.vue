@@ -135,6 +135,7 @@
                 limit: 20,
                 count: 0,
                 currentPage: 1,
+                cache:[]
 
             }
         },
@@ -156,6 +157,7 @@
                     this.tableData = [];
                     this.tableData = res.students;
                     this.count = res.students.length;
+                    this.cache = res.students;
                     this.getLists();
                 }
 
@@ -172,20 +174,20 @@
             },
             async getLists() {
 
-                const res = await getAllstudent({})
-                if (res.status == 1) {
+                // const res = await getAllstudent({})
+                // if (res.status == 1) {
 
                     this.tableData = [];
                     for (let i = this.offset; i < this.offset + this.limit; i++) {
-                        if (i < this.offset + res.students.length) {
+                        if (i < this.offset +  this.cache.length) {
                             const temp = {};
-                            temp.SID = res.students[i].sid;
-                            temp.NAME = res.students[i].name;
-                            temp.SEX = res.students[i].sex;
-                            temp.AGE = res.students[i].age;
-                            temp.BIRTHDAY = res.students[i].birthday;
-                            temp.DNAME = res.students[i].dname;
-                            temp.CLASS = res.students[i].class;
+                            temp.SID =  this.cache[i].sid;
+                            temp.NAME =  this.cache[i].name;
+                            temp.SEX =  this.cache[i].sex;
+                            temp.AGE =  this.cache[i].age;
+                            temp.BIRTHDAY =  this.cache[i].birthday;
+                            temp.DNAME =  this.cache[i].dname;
+                            temp.CLASS =  this.cache[i].class;
                             this.tableData.push(temp);
 
                         }
@@ -193,7 +195,7 @@
                     }
 
 
-                }
+                // }
 
 
             },

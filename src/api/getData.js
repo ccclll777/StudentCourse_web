@@ -52,3 +52,18 @@ export const insertStudentCourse = data => fetch('/StudentCourse/insertStudentCo
 
 
 export const UpdateStudentCourse = data => fetch('/StudentCourse/UpdateStudentCourse', data, 'GET');
+
+
+
+export const findSelectionCourse = data => fetch('/StudentCourse/findSelectionCourse', data, 'GET');
+export const countSelectCourseNum = data => fetch('/StudentCourse/countSelectCourseNum', data, 'GET');
+
+
+export const findMaxScore = data => fetch('/StudentCourse/findMaxScore', data, 'GET');
+
+
+export const getScoreDistribution = data => fetch('/StudentCourse/getScoredistribution', data, 'GET');
+
+export const getCourseMaxScoreStudent = data => fetch('/StudentCourse/getCourseMaxScoreStudent', data, 'GET');
+
+export const findSelectCourseNum = data => fetch('/StudentCourse/findSelectCourseNum', data, 'GET');

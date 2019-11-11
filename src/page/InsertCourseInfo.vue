@@ -99,6 +99,7 @@
                 limit: 10,
                 count: 0,
                 currentPage: 1,
+                cache:[]
             }
         },
         async created() {
@@ -120,6 +121,7 @@
                     this.tableData = [];
                     this.tableData = res.courses;
                     this.count = res.courses.length;
+                    this.cache = res.courses;
                     this.getLists();
                 }
 
@@ -135,23 +137,23 @@
                 this.getLists()
             },
             async getLists() {
-                var version = new Date().getTime();
-                const res = await findAllCourse({version:version})
-                if (res.status == 1) {
+                // var version = new Date().getTime();
+                // const res = await findAllCourse({version:version})
+                // if (res.status == 1) {
 
                     this.tableData = [];
                     for (let i = this.offset; i < this.offset + this.limit; i++) {
-                        if (i < this.offset + res.courses.length) {
+                        if (i < this.offset + this.cache.length) {
                             const temp = {};
-                            temp.cid = res.courses[i].cid;
-                            temp.NAME = res.courses[i].name;
-                            temp.fcid = res.courses[i].fcid;
-                            temp.credit = res.courses[i].credit;
+                            temp.cid = this.cache[i].cid;
+                            temp.NAME = this.cache[i].name;
+                            temp.fcid = this.cache[i].fcid;
+                            temp.credit = this.cache[i].credit;
                             this.tableData.push(temp);
 
                         }
 
-                    }
+                    // }
 
 
                 }
